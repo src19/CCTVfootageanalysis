@@ -8,7 +8,7 @@ def formatted_timestamp(cap):
   minutes = int(timestamp_ms / (60 * 1000))  
   seconds = int((timestamp_ms % (60 * 1000)) / 1000) 
   milliseconds = int(timestamp_ms % 1000)  
-  return f"{minutes:02d}:{seconds:02d}.{milliseconds:03d}"  
+  return f"{minutes:02d}:{seconds:02d}.{milliseconds:03d}"
 
 
 def process_video(video_path, output_path):
@@ -36,7 +36,6 @@ def process_video(video_path, output_path):
     ret, frame = cap.read()
     if not ret:
         break
-
     cv2.imshow('frame', frame)
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -52,9 +51,7 @@ def process_video(video_path, output_path):
             if not out:
                 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
                 out = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))
-        out.write(frame)
-
-    cv2.imshow('frame', frame)
+            out.write(frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
@@ -64,9 +61,4 @@ def process_video(video_path, output_path):
   cv2.destroyAllWindows()
 
 
-# Replace with the path wehere you have stored the input video
-video_path = 'C:/Users/sunra/OneDrive/Desktop/motiondet.mp4'  
-
-# Replace with the path where you want to store the resulting video
-output_path = 'C:/Users/sunra/OneDrive/Desktop/editvid.mp4'  
-process_video(video_path, output_path)
+#write the required input output paths and then call the function process_video
